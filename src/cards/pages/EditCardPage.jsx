@@ -23,12 +23,17 @@ export default function EditCardPage() {
       user_id: card.user_id,
     });
   });
+  console.log(data);
+
   useEffect(() => {
-    handleGetCard().then((data) => {
-      const modelCard = mapCardToModel(data);
-      rest.setData(modelCard);
-    });
+    handleGetCard(id);
   }, []);
+
+  useEffect(() => {
+    console.log(card);
+    if (card) rest.setData(mapCardToModel(card));
+  }, [card]);
+
   if (!user) return <Navigate replace to={ROUTES.CARDS} />;
 
   return (
@@ -40,15 +45,19 @@ export default function EditCardPage() {
         alignItems: "center",
       }}
     >
-      <CardForm
-        title="edit card"
-        onSubmit={rest.onSubmit}
-        onReset={rest.handleReset}
-        errors={errors}
-        onFormChange={rest.validateForm}
-        onInputChange={rest.handleChange}
-        data={data}
-      />
+      {card ? (
+        <CardForm
+          title="edit card"
+          onSubmit={rest.onSubmit}
+          onReset={rest.handleReset}
+          errors={errors}
+          onFormChange={rest.validateForm}
+          onInputChange={rest.handleChange}
+          data={data}
+        />
+      ) : (
+        "...loading"
+      )}
     </Container>
   );
 }

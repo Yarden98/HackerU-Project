@@ -2,6 +2,7 @@ import { useCallback, useMemo, useState } from "react";
 import {
   changeLikeStatus,
   deleteCard,
+  getCard,
   getCards,
   getMyCards,
 } from "../services/cardApiService";
@@ -24,6 +25,18 @@ export default function useCards() {
     setCards(cards);
     setCard(card);
   };
+
+  const handleGetCard = useCallback(async (id) => {
+    try {
+      const card = await getCard(id);
+      setLoading(false);
+      console.log(card);
+      setCard(card);
+    } catch (err) {
+      setLoading(false);
+      setError(err.message);
+    }
+  }, []);
 
   const handleGetCards = useCallback(async () => {
     try {
@@ -72,9 +85,11 @@ export default function useCards() {
     cards,
     isLoading,
     error,
+    card,
     handleGetCards,
     handleDeleteCard,
     handleGetMyCard,
     handleLikeCard,
+    handleGetCard,
   };
 }
