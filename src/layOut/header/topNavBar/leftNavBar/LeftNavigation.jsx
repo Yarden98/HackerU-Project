@@ -17,11 +17,27 @@ export default function LeftNavigation() {
           <TextLogo />
           <NavItem to={ROUTES.CARDS} label="Cards" sx={{ color: "white" }} />
           <NavItem to={ROUTES.ABOUT} label="About" sx={{ color: "white" }} />
-          {user && <NavItem to={ROUTES.FAV_CARDS} label="Favorite cards" />}
-          {user?.isBusiness && (
-            <NavItem to={ROUTES.MY_CARDS} label="My cards" />
+          {user && (
+            <NavItem
+              to={ROUTES.FAV_CARDS}
+              label="Favorite cards"
+              sx={{ color: "white" }}
+            />
           )}
-          {user?.isAdmin && <NavItem to={ROUTES.SANDBOX} label="Sandbox" />}
+          {user?.isBusiness && (
+            <NavItem
+              to={ROUTES.MY_CARDS}
+              label="My cards"
+              sx={{ color: "white" }}
+            />
+          )}
+          {user?.isAdmin && (
+            <NavItem
+              to={ROUTES.SANDBOX}
+              label="Sandbox"
+              sx={{ color: "white" }}
+            />
+          )}
         </Box>
       </Box>
     </>

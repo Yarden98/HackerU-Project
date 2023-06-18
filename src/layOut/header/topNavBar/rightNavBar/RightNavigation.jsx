@@ -7,18 +7,21 @@ import Logged from "./Logged";
 import { useUser } from "../../../../users/providers/UserProvider";
 import Notlogged from "./Notlogged";
 import MoreButton from "./MoreButton";
+import Search from "./search/Search";
 export default function RightNavigation() {
   const { isDark, toggleDark } = useTheme();
   const { user } = useUser();
   return (
     <>
       <Box sx={{ display: { xs: "none", md: "inline-flex" } }}>
+        <Search />
         <IconButton sx={{ marginLeft: 1 }} onClick={toggleDark}>
           {isDark ? <LightModeIcon /> : <DarkModeIcon />}
         </IconButton>
 
         {user ? <Logged /> : <Notlogged />}
       </Box>
+
       <MoreButton />
     </>
   );
