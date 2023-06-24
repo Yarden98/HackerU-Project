@@ -4,12 +4,13 @@ import PageHeader from "../../../components/PageHeader";
 import useCards from "../../hooks/useCards";
 import CardsFeedback from "../CardsFeedback";
 export default function CardsPage() {
-  const { cards, isLoading, error, handleGetCards, handleDeleteCard } =
-    useCards();
+  const { value, handleGetCards, handleDeleteCard, cards } = useCards();
+  const { isLoading, error, filteredCards } = value;
 
   useEffect(() => {
     handleGetCards();
   }, []);
+
   const handleDelet = async (id) => {
     await handleDeleteCard(id);
     handleGetCards();

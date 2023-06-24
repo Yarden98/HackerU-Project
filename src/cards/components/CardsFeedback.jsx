@@ -10,6 +10,7 @@ export default function CardsFeedback({
   error,
   cards,
   handleDelete,
+  onLike,
 }) {
   if (isLoading) return <Spinner />;
   if (error) return <Error errorMessage={error} />;
@@ -19,6 +20,11 @@ export default function CardsFeedback({
         Oops... it seems there are no business cards to display
       </Typography>
     );
-  if (cards) return <Cards cards={cards} handleDelete={handleDelete} />;
+  if (cards)
+    return <Cards cards={cards} handleDelete={handleDelete} onLike={onLike} />;
   return null;
 }
+
+CardsFeedback.defultProps = {
+  onLike: () => {},
+};

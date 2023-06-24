@@ -4,14 +4,11 @@ import React from "react";
 import cardType from "../models/cardType";
 import BussinessCard from "../components/card/BussinessCard";
 
-export default function Cards({ cards, handleDelete, handleLikeCard }) {
+export default function Cards({ cards, handleDelete, onLike }) {
   const handleEdit = (id) => {
     console.log(`Card ${id} is edit`);
   };
 
-  const handleLike = (id) => {
-    console.log(`you liked ${id} card `);
-  };
   console.log(cards);
   return (
     <>
@@ -23,7 +20,7 @@ export default function Cards({ cards, handleDelete, handleLikeCard }) {
               key={card._id}
               handleDelete={handleDelete}
               handleEdit={handleEdit}
-              handleLike={handleLike}
+              onLike={onLike}
             />
           </Grid>
         ))}

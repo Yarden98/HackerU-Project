@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import {
   changeLikeStatus,
   deleteCard,
@@ -9,8 +9,12 @@ import {
 import useAxios from "../../hooks/useAxios";
 import { useSnack } from "../../provider/SnackbarProvider";
 import { useUser } from "../../users/providers/UserProvider";
+import { useSearchParams } from "react-router-dom";
 
 export default function useCards() {
+  const [query, setQuery] = useState("");
+  const [filteredCards, setFilter] = useState(null);
+  const [searchParams] = useSearchParams();
   const [cards, setCards] = useState(null);
   const [card, setCard] = useState(null);
   const [isLoading, setLoading] = useState(true);
@@ -18,6 +22,21 @@ export default function useCards() {
   useAxios();
   const snack = useSnack();
   const user = useUser();
+
+  useEffect(() => {
+    setQuery(searchParams.get("q") ?? "");
+  }, [searchParams]);
+
+  useEffect(() => {
+    if (card) {
+      setFilter(
+        cards.filter(
+          (card) =>
+            card.title.includes(query) || String(card.bizNumber).includes(query)
+        )
+      );
+    }
+  }, [cards, query]);
 
   const requestStatus = (loading, errorMessage, cards, card = null) => {
     setLoading(loading);
@@ -73,7 +92,7 @@ export default function useCards() {
 
   const handleLikeCard = useCallback(async (cradId) => {
     try {
-      const card = changeLikeStatus(cradId);
+      const card = await changeLikeStatus(cradId);
       requestStatus(false, null, cards, card);
       snack("success", "The business card has been Liked");
     } catch (error) {
@@ -81,15 +100,18 @@ export default function useCards() {
     }
   }, []);
 
+  const value = useMemo(() => {
+    return { cards, card, isLoading, error, filteredCards };
+  }, [cards, card, isLoading, error, filteredCards]);
+
   return {
     cards,
-    isLoading,
-    error,
-    card,
+    value,
     handleGetCards,
     handleDeleteCard,
     handleGetMyCard,
     handleLikeCard,
     handleGetCard,
+    setCards,
   };
 }

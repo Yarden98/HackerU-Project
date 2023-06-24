@@ -11,20 +11,36 @@ import { useUser } from "../../../users/providers/UserProvider";
 import { useNavigate } from "react-router-dom";
 import CardDeleteDialog from "./CardDeleteDialog";
 import ROUTES from "../../../routers/routeModel";
+import useCards from "../../hooks/useCards";
 
 export default function CardActionBar({
   id,
   user_id,
   handleDelete,
   handleEdit,
-  handleLike,
+  cardUserId,
+  cardLikes,
+  onLike,
+  cardId,
 }) {
   const { user } = useUser();
   const [isDialogOpen, setDialog] = useState(false);
   const navigate = useNavigate();
+  const { handleLikeCard } = useCards();
+
+  const [isLike, setLike] = useState(
+    () => !!cardLikes.find((id) => id === user_id)
+  );
+
   const handleDeleteCard = () => {
     handleDelete(id);
     setDialog(false);
+  };
+
+  const handleLike = async () => {
+    setLike((prev) => !prev);
+    await handleLikeCard(cardId);
+    onLike();
   };
   return (
     <>
@@ -59,11 +75,8 @@ export default function CardActionBar({
           </Tooltip>
           {user && (
             <Tooltip title="Favorite">
-              <IconButton
-                aria-label="Add to Favorite"
-                onClick={() => handleLike(id)}
-              >
-                <FavoriteIcon />
+              <IconButton aria-label="Add to Favorite" onClick={handleLike}>
+                <FavoriteIcon color={isLike ? "error" : "inherit"} />
               </IconButton>
             </Tooltip>
           )}

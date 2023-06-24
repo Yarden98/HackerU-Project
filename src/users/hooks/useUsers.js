@@ -1,4 +1,4 @@
-import { useState, useCallback, useMemo } from "react";
+import { useState, useCallback, useMemo, useEffect } from "react";
 import useAxios from "../../hooks/useAxios";
 import {
   getUser,
@@ -14,6 +14,7 @@ import normalizeUser from "../helpers/normalization/normalizeUser";
 const useUsers = () => {
   const [isLoading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [filteredUser, setFilter] = useState(null);
 
   const navigate = useNavigate();
   const { user, setUser, setToken } = useUser();

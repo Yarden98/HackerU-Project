@@ -2,7 +2,7 @@ import React from "react";
 import MuiMenu from "@mui/material/Menu";
 import { useUser } from "../../../../users/providers/UserProvider";
 import useUsers from "../../../../users/hooks/useUsers";
-import { Avatar, Box, MenuItem, Stack } from "@mui/material";
+import { Box, MenuItem } from "@mui/material";
 import MenuLinks from "../../../../routers/components/MenuLinks";
 import ROUTES from "../../../../routers/routeModel";
 

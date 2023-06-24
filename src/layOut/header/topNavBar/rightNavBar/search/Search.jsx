@@ -1,10 +1,21 @@
 import React from "react";
-import { Box, IconButton, InputBase } from "@mui/material";
+import {
+  Box,
+  FormControl,
+  IconButton,
+  InputBase,
+  OutlinedInput,
+} from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { shape } from "prop-types";
 import { styled, alpha } from "@mui/material/styles";
+import { useTheme } from "@emotion/react";
+import { useSearchParams } from "react-router-dom";
 
 export default function Search() {
+  const { isDark } = useTheme();
+  const [searchParams, setSearch] = useSearchParams();
+  const handleChange = ({ target }) => setSearch({ q: target.value });
   const Search = styled("div")(({ theme }) => ({
     position: "relative",
     borderRadius: theme.shape.borderRadius,
@@ -44,16 +55,23 @@ export default function Search() {
     },
   }));
   return (
-    <Box>
-      <Search>
-        <SearchIconWrapper>
-          <SearchIcon />
-        </SearchIconWrapper>
-        <StyledInputBase
-          placeholder="Search…"
-          inputProps={{ "aria-label": "search" }}
-        />
-      </Search>
+    <Box display="inline-flex">
+      <FormControl>
+        <Search>
+          <SearchIconWrapper
+            value={searchParams.get("q") ?? ""}
+            onChange={handleChange}
+            position="end"
+          >
+            <SearchIcon />
+          </SearchIconWrapper>
+          <StyledInputBase
+            edge="end"
+            placeholder="Search…"
+            inputProps={{ "aria-label": "search" }}
+          />
+        </Search>
+      </FormControl>
     </Box>
   );
 }
