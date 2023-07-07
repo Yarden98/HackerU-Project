@@ -12,42 +12,84 @@ export default function About() {
         />
         <Grid container spacing={2}>
           <Grid item xs={12} md={8} alignSelf="center">
-            Lorem Ipsum Dolor Sit Emmett, Konsektorer Edificing Alit and
-            Shabagat Livam Solgak. Bright and shrill shrill drifted, with
-            flexible elements. Do you worship and take refuge in us, and you
-            will receive the name - to you Morgam Borak? To tag Ishbes.
-            Blackmailer in Lubbock. Take a look at Lindo for Markel S for Kimpo,
-            Dol, Tzot and Meyot - for Fatiam Barshag - and for Fatiam Gaddish.
-            Quiz Dumor for Yamum in Linach and Rogza. For a small amount of
-            food. Lorem Ipsum Dolor Sit Emmett, Consector Adepicing Alit. Seth
-            almankom nisi non prophesied. Des iacollis volupta diam. Vestibulum
-            et dolor, crass agate lactus val aogo and vestibulum solisi tidum in
-            Alik. Kulhae Tsopet for concoction Ivan If, Brometz Klaresht
-            Mihuchus. Kalatsi for the real Karashek Sakheit Dez Ma, of you for
-            the married matachin of Manoruch. Kulhae Tsopet for concoction Ivan
-            If, Brometz Klaresht Mihuchus. Calaci nolum aerus sapian - Fossilis
-            Quasi, Aquasman Quasi in Mr. Modoff. Oedipu Blastic is clear, in
-            Neft Neft Lamson Belrak - and Anaf for the true truth, Sakhait Dez
-            Ma, of you for a married methachin from Nurchguler Monferer Sobert
-            Loram Shabetz Yahol, Lechnotz Berarir Gek Litz, and Shebagat. Colors
-            Monfred Addendum Silkoff, exciting and touching. A replacement for
-            the Bluff Kintz spray gun. Lat Tsashakhmi Tsash Bala, Mansuto Tsmelh
-            Labiko Nanbi, Tsmuku Belokria Shitsma Boruk. Corus Condimentum in
-            Lycra, Nunsty Clover in Recana Stum, Perikach Tetsrik Lerti.
-            Constructor Adiposing Alit. Seth almankom nisi non prophesied. Des
-            iacollis volupta diam. Vestibulum et dolor, crass agate lactus val
-            aogo and vestibulum solisi tidum in Alik. Corus Condimentum in
-            Lycra, Nunsty Clover in Recana Stum, Perikach Tetsrik Lerti. Their
-            hearts were removed. Bright and shrill shrill drifted, with flexible
-            elements. Do you worship and take refuge in us, and you will receive
-            the name - to you Morgam Borak? To tag Ishbes. Blackmailer in
-            Lubbock. Take a look at Lindo for Markel S for Kimpo, Dol, Tzot and
-            Meyot - for Fatiam Barshag - and for Fatiam Gaddish. Quiz Dumor for
-            Yamum in Linach and Rogza. For a small amount of food. The tie that
-            sat on the couch that was tailor-made - three and a half-year-old
-            man was wearing a suit and a shirt that was drying on the couch.
-            Zota from the summer clean Apah Dalamat dry, Kahana Nitzacho Nimergi
-            Shakhim Tok, the flap Shanra the Tidam the Kiir Kek
+            <div>
+              <h1>Welcome to our website!</h1>
+
+              <h2>About Business Cards:</h2>
+              <p>
+                Business cards are an essential marketing tool for professionals
+                and businesses of all sizes. They serve as a tangible
+                representation of your brand and provide a convenient way to
+                exchange contact information with potential clients, partners,
+                or colleagues.
+              </p>
+
+              <h2>Key Features and Benefits:</h2>
+              <ol>
+                <li>
+                  <strong>Professional Design:</strong> Our team of experienced
+                  designers can help create a visually appealing and customized
+                  business card design that aligns with your brand identity.
+                  From selecting the right color schemes to incorporating your
+                  logo and contact details, we ensure your business cards make a
+                  strong statement.
+                </li>
+                <li>
+                  <strong>Premium Printing:</strong> We utilize state-of-the-art
+                  printing techniques and top-quality materials to ensure that
+                  your business cards look and feel impressive. Whether you
+                  prefer a classic matte finish or a sleek glossy look, we have
+                  options that will suit your preferences.
+                </li>
+                <li>
+                  <strong>Contact Information:</strong> Your business card will
+                  prominently display your name, job title, company name, phone
+                  number, email address, and website. This makes it easy for
+                  recipients to reach out to you and learn more about your
+                  business.
+                </li>
+                <li>
+                  <strong>Versatility:</strong> Business cards can be utilized
+                  in various networking situations, including conferences, trade
+                  shows, meetings, and social events. They provide a convenient
+                  way to share your details and leave a lasting impression with
+                  potential clients and partners.
+                </li>
+                <li>
+                  <strong>Brand Consistency:</strong> Our business cards are
+                  designed to maintain consistency with your overall brand
+                  image. By incorporating your brand elements and visual
+                  identity, we ensure that your business cards align seamlessly
+                  with your other marketing materials.
+                </li>
+              </ol>
+
+              <h2>Ordering Process:</h2>
+              <p>
+                Ordering your customized business cards is simple and
+                hassle-free. Visit our website or contact our customer support
+                team to discuss your requirements and receive a quote. Once
+                you're satisfied with the design, we'll handle the printing and
+                deliver the finished product to your doorstep in a timely
+                manner.
+              </p>
+
+              <h2>Conclusion:</h2>
+              <p>
+                Investing in well-designed and professionally printed business
+                cards can significantly enhance your networking efforts and help
+                you make meaningful connections. At [Your Company Name], we are
+                committed to delivering business cards that capture the essence
+                of your brand and make a lasting impact on those who receive
+                them.
+              </p>
+              <p>
+                Browse through our portfolio, explore our customization options,
+                and get started on creating business cards that will set you
+                apart from the competition. Elevate your professional image with
+                our top-quality business cards today!
+              </p>
+            </div>
           </Grid>
           <Grid
             item
@@ -57,7 +99,12 @@ export default function About() {
               justifyContent: "center",
             }}
           >
-            <img src="/assets/images/logo.png" alt="card" width="1000%" />
+            <img
+              src="/assets/images/logo.png"
+              alt="card"
+              width="100%"
+              height="50%"
+            />
           </Grid>
         </Grid>
       </Container>

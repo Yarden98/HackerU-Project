@@ -13,16 +13,6 @@ export default function MyFormTwo() {
     lastName: Joi.string().min(2).max(10),
   };
 
-  //   //define the schema
-  //   const schema = Joi.object({ firstName: Joi.string() });
-
-  //   //get the input value
-  //   const value = { firstName: "Yarden" };
-  //   //validate and get the errors
-  //   const { error } = schema.validate(value);
-  //   if (error) console.log(error);
-  //   else console.log("The data is ok");
-
   const [data, setData] = useState(initialValue);
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
@@ -75,7 +65,6 @@ export default function MyFormTwo() {
         component={"form"}
         onSubmit={(e) => {
           e.preventDefault();
-          console.log("form submitted");
         }}
       >
         <Typography>My Form</Typography>

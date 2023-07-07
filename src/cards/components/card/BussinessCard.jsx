@@ -8,14 +8,22 @@ import { func } from "prop-types";
 import { CardActionArea } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import ROUTES from "../../../routers/routeModel";
+import useCards from "../../hooks/useCards";
 
 export default function BussinessCard({
   card,
   handleDelete,
   handleEdit,
-  onLike,
+  handleLike,
+  changeLikeStatus,
 }) {
   const navigate = useNavigate();
+
+  if (card.user_id) {
+    console.log("It's ok and it work :)");
+  } else {
+    console.log("null");
+  }
   return (
     <Card sx={{ maxWidth: 300, m: 2 }}>
       <CardActionArea
@@ -34,9 +42,9 @@ export default function BussinessCard({
         id={card._id}
         user_id={card.user_id}
         handleDelete={handleDelete}
-        handleEdit={handleEdit}
-        onLike={onLike}
         cardLikes={card.likes}
+        handleLike={handleLike}
+        onLike={changeLikeStatus}
       />
     </Card>
   );

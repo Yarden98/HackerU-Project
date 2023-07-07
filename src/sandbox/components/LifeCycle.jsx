@@ -11,18 +11,14 @@ export default function LifeCycle() {
   const [counter, setCounter] = useState(initialCounter);
 
   useEffect(() => {
-    console.log("in the useEffect The counter is" + counter);
-
     return () => {
       localStorage.setItem("counter", JSON.stringify(counter));
-      console.log("in the return The counter is " + counter);
     };
   }, [counter]);
 
   const handleInc = () => {
     setCounter((prev) => prev + 1);
   };
-  console.log("every render");
 
   return (
     <div>

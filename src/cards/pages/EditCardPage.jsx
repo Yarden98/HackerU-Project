@@ -13,28 +13,33 @@ import ROUTES from "../../routers/routeModel";
 
 export default function EditCardPage() {
   const { id } = useParams();
-  const { handleUpdateCard, handleGetCard, card } = useCards();
-
+  const { handleUpdateCard, handleGetCard, value } = useCards();
+  console.log(value.card);
   const { user } = useUser();
   const { data, errors, ...rest } = useForm(initialCardForm, cardSchema, () => {
-    handleUpdateCard(card._id, {
+    handleUpdateCard(value.card._id, {
       ...normalizeUser({ ...data }),
-      bizNumber: card.bizNumber,
-      user_id: card.user_id,
+      bizNumber: value.card.bizNumber,
+      user_id: value.card._id,
     });
   });
-  console.log(data);
+
+  if (value.card.user_id) {
+    console.log("Its work and you will be Okey :) ");
+  } else {
+    console.log("null and you are fucking stupid :( ");
+  }
 
   useEffect(() => {
-    handleGetCard(id);
+    handleGetCard(id).then((data) => {
+      if (user._id !== data.user_id) Navigate(ROUTES.CARDS);
+      const modeledCard = mapCardToModel(data);
+      rest.setData(modeledCard);
+      // if (card) rest.setData(mapCardToModel(card));
+    });
   }, []);
 
-  useEffect(() => {
-    console.log(card);
-    if (card) rest.setData(mapCardToModel(card));
-  }, [card]);
-
-  if (!user) return <Navigate replace to={ROUTES.CARDS} />;
+  // if (!user) return <Navigate replace to={ROUTES.CARDS} />;
 
   return (
     <Container
@@ -45,7 +50,7 @@ export default function EditCardPage() {
         alignItems: "center",
       }}
     >
-      {card ? (
+      {value.card ? (
         <CardForm
           title="edit card"
           onSubmit={rest.onSubmit}
@@ -54,6 +59,7 @@ export default function EditCardPage() {
           onFormChange={rest.validateForm}
           onInputChange={rest.handleChange}
           data={data}
+          to={ROUTES.CARDS}
         />
       ) : (
         "...loading"

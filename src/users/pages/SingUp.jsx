@@ -17,7 +17,6 @@ export default function SingUp() {
     signupSchema,
     handleSignup
   );
-  console.log(user);
 
   if (user) return <Navigate replace to={ROUTES.ROOT} />;
   return (

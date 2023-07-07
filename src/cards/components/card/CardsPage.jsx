@@ -3,10 +3,12 @@ import React, { useEffect } from "react";
 import PageHeader from "../../../components/PageHeader";
 import useCards from "../../hooks/useCards";
 import CardsFeedback from "../CardsFeedback";
+import { useSearchParams } from "react-router-dom";
 export default function CardsPage() {
-  const { value, handleGetCards, handleDeleteCard, cards } = useCards();
-  const { isLoading, error, filteredCards } = value;
-
+  const { handleGetCards, handleDeleteCard, handleLikeCard, value, cards } =
+    useCards();
+  const { error, isLoading, filteredCards } = value;
+  useSearchParams();
   useEffect(() => {
     handleGetCards();
   }, []);
@@ -15,6 +17,10 @@ export default function CardsPage() {
     await handleDeleteCard(id);
     handleGetCards();
   };
+  const handleLike = async (id) => {
+    await handleLikeCard(id);
+  };
+  console.log(filteredCards);
   return (
     <div>
       <Container sx={{ mt: 2 }}>
@@ -23,10 +29,11 @@ export default function CardsPage() {
           subtitle="On this page you can find all bussines cards from all caregories"
         />
         <CardsFeedback
-          cards={cards}
+          cards={filteredCards}
           isLoading={isLoading}
           error={error}
           handleDelete={handleDelet}
+          handleLike={handleLike}
         />
       </Container>
     </div>

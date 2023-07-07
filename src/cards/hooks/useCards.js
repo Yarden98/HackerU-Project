@@ -2,14 +2,22 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import {
   changeLikeStatus,
   deleteCard,
+  editCard,
   getCard,
   getCards,
   getMyCards,
+  createCard,
 } from "../services/cardApiService";
 import useAxios from "../../hooks/useAxios";
 import { useSnack } from "../../provider/SnackbarProvider";
 import { useUser } from "../../users/providers/UserProvider";
-import { useSearchParams } from "react-router-dom";
+import {
+  Navigate,
+  createSearchParams,
+  useSearchParams,
+} from "react-router-dom";
+import ROUTES from "../../routers/routeModel";
+import Search from "../../layOut/header/topNavBar/rightNavBar/search/Search";
 
 export default function useCards() {
   const [query, setQuery] = useState("");
@@ -21,14 +29,15 @@ export default function useCards() {
   const [error, setError] = useState(null);
   useAxios();
   const snack = useSnack();
-  const user = useUser();
+  const { user } = useUser();
 
   useEffect(() => {
     setQuery(searchParams.get("q") ?? "");
   }, [searchParams]);
 
   useEffect(() => {
-    if (card) {
+    if (cards) {
+      console.log("hello");
       setFilter(
         cards.filter(
           (card) =>
@@ -49,7 +58,6 @@ export default function useCards() {
     try {
       const card = await getCard(id);
       setLoading(false);
-      console.log(card);
       setCard(card);
     } catch (err) {
       setLoading(false);
@@ -63,6 +71,7 @@ export default function useCards() {
       setLoading(false);
       setCards(cards);
       snack("success", "All the cards are here!");
+      return cards;
     } catch (err) {
       setLoading(false);
       setError(err.message);
@@ -90,13 +99,58 @@ export default function useCards() {
     }
   }, []);
 
-  const handleLikeCard = useCallback(async (cradId) => {
+  const handleLikeCard = useCallback(
+    async (cardId) => {
+      try {
+        const card = await changeLikeStatus(cardId);
+        console.log(card);
+        snack("success", "The business card has been Liked");
+      } catch (error) {
+        requestStatus(false, error, null);
+      }
+    },
+    [snack]
+  );
+
+  const handleGetFavCards = useCallback(async () => {
     try {
-      const card = await changeLikeStatus(cradId);
-      requestStatus(false, null, cards, card);
-      snack("success", "The business card has been Liked");
+      setLoading(true);
+      const cards = await handleGetCards();
+      const favCards = cards.filter(
+        (card) => !!card.likes.find((id) => id === user.id)
+      );
+      requestStatus(false, null, favCards);
     } catch (error) {
       requestStatus(false, error, null);
+    }
+  }, [user]);
+
+  const handleUpdateCard = useCallback(
+    async (cardId, normalaizedCard) => {
+      try {
+        setLoading(true);
+        const card = await editCard(cardId, normalaizedCard);
+        console.log(card);
+        requestStatus(false, null, null, card);
+        snack("success", "The business card has been successfully updated");
+        Navigate(ROUTES.MY_CARDS);
+      } catch (error) {
+        requestStatus(false, error, null);
+      }
+    },
+    [snack]
+  );
+
+  const handleCreateCard = useCallback(async (card) => {
+    try {
+      const card = await createCard(card);
+      setLoading(true);
+      setCard(card);
+      snack("success", "A new business card has been created");
+    } catch (err) {
+      setLoading(false);
+      setError(err.message);
+      snack("error", "has a problem to created a new card");
     }
   }, []);
 
@@ -113,5 +167,8 @@ export default function useCards() {
     handleLikeCard,
     handleGetCard,
     setCards,
+    handleGetFavCards,
+    handleUpdateCard,
+    handleCreateCard,
   };
 }

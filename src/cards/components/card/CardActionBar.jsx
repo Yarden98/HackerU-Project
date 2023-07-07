@@ -17,19 +17,16 @@ export default function CardActionBar({
   id,
   user_id,
   handleDelete,
-  handleEdit,
-  cardUserId,
-  cardLikes,
-  onLike,
   cardId,
+  cardLikes,
+  handleLike,
+  changeLikeStatus,
 }) {
   const { user } = useUser();
   const [isDialogOpen, setDialog] = useState(false);
   const navigate = useNavigate();
-  const { handleLikeCard } = useCards();
-
   const [isLike, setLike] = useState(
-    () => !!cardLikes.find((id) => id === user_id)
+    () => !!cardLikes?.find((id) => id === user.id)
   );
 
   const handleDeleteCard = () => {
@@ -37,11 +34,11 @@ export default function CardActionBar({
     setDialog(false);
   };
 
-  const handleLike = async () => {
+  const handleLikeCard = async () => {
     setLike((prev) => !prev);
-    await handleLikeCard(cardId);
-    onLike();
+    await handleLike(id);
   };
+
   return (
     <>
       <CardActions sx={{ justifyContent: "space-between" }}>
@@ -56,14 +53,16 @@ export default function CardActionBar({
                   <DeleteIcon />
                 </IconButton>
               </Tooltip>
-              <Tooltip title="Edit">
-                <IconButton
-                  aria-label="Edit"
-                  onClick={() => navigate(`${ROUTES.EDIT_CARD}/${id}`)}
-                >
-                  <EditIcon />
-                </IconButton>
-              </Tooltip>
+              {user && user._id === cardId && (
+                <Tooltip title="Edit">
+                  <IconButton
+                    aria-label="Edit"
+                    onClick={() => navigate(`${ROUTES.EDIT_CARD}/${id}`)}
+                  >
+                    <EditIcon />
+                  </IconButton>
+                </Tooltip>
+              )}
             </Box>
           ) : null}
         </Box>
@@ -75,7 +74,7 @@ export default function CardActionBar({
           </Tooltip>
           {user && (
             <Tooltip title="Favorite">
-              <IconButton aria-label="Add to Favorite" onClick={handleLike}>
+              <IconButton aria-label="Add to Favorite" onClick={handleLikeCard}>
                 <FavoriteIcon color={isLike ? "error" : "inherit"} />
               </IconButton>
             </Tooltip>

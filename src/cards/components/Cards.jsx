@@ -1,15 +1,18 @@
-import { Grid } from "@mui/material";
+import { Grid, IconButton } from "@mui/material";
 import { arrayOf } from "prop-types";
 import React from "react";
 import cardType from "../models/cardType";
 import BussinessCard from "../components/card/BussinessCard";
+import { Navigate } from "react-router-dom";
+import useCards from "../hooks/useCards";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
 
-export default function Cards({ cards, handleDelete, onLike }) {
-  const handleEdit = (id) => {
-    console.log(`Card ${id} is edit`);
-  };
-
-  console.log(cards);
+export default function Cards({
+  cards,
+  handleDelete,
+  handleLike,
+  changeLikeStatus,
+}) {
   return (
     <>
       <Grid container>
@@ -19,12 +22,17 @@ export default function Cards({ cards, handleDelete, onLike }) {
               card={card}
               key={card._id}
               handleDelete={handleDelete}
-              handleEdit={handleEdit}
-              onLike={onLike}
+              handleLike={handleLike}
+              onLike={changeLikeStatus}
             />
           </Grid>
         ))}
       </Grid>
+      <IconButton
+        sx={{ marginLeft: "90%", xxs: "none", xs: "none", md: "block" }}
+      >
+        <AddCircleIcon sx={{ fontSize: 50 }} color="primary" />
+      </IconButton>
     </>
   );
 }

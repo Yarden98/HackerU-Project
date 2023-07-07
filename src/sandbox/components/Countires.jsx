@@ -12,11 +12,8 @@ export default function Countires() {
   const getDataFromAPI = async () => {
     try {
       const { data } = await axios.get("https://restcountries.com/v3.1/all");
-      console.log(data);
       setCountries(data);
-    } catch (err) {
-      console.log(err.message);
-    }
+    } catch (err) {}
   };
   return (
     <div>

@@ -10,7 +10,7 @@ export const removeToken = () => {
 };
 
 export const getToken = () => {
-  localStorage.getItem(TOKEN);
+  return localStorage.getItem(TOKEN);
 };
 
 export const getUser = () => {

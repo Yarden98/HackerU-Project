@@ -61,7 +61,7 @@ export default function MyFormWithCustomComponents() {
     >
       <Form
         title="My form"
-        onSubmit={handleSubmit}
+        onSubmit={handleChange}
         onReset={handleReset}
         styles={{ maxWidth: "450px" }}
         validateForm={validateForm}

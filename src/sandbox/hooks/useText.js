@@ -11,7 +11,6 @@ export default function useText(initialText) {
   };
 
   const resetText = () => {
-    console.log("hello");
     setText(initialText);
   };
 
