@@ -23,7 +23,7 @@ export default function CardsPage() {
   console.log(filteredCards);
   return (
     <div>
-      <Container sx={{ mt: 2 }}>
+      <Container>
         <PageHeader
           title="cards"
           subtitle="On this page you can find all bussines cards from all caregories"

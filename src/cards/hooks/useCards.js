@@ -153,7 +153,7 @@ export default function useCards() {
       snack("error", "has a problem to created a new card");
     }
   }, []);
-
+  debugger;
   const value = useMemo(() => {
     return { cards, card, isLoading, error, filteredCards };
   }, [cards, card, isLoading, error, filteredCards]);

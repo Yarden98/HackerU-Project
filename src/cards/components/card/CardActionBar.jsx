@@ -29,6 +29,10 @@ export default function CardActionBar({
     () => !!cardLikes?.find((id) => id === user.id)
   );
 
+  const { handleGetCard } = useCards();
+
+  console.log(user_id);
+
   const handleDeleteCard = () => {
     handleDelete(id);
     setDialog(false);
@@ -57,7 +61,13 @@ export default function CardActionBar({
                 <Tooltip title="Edit">
                   <IconButton
                     aria-label="Edit"
-                    onClick={() => navigate(`${ROUTES.EDIT_CARD}/${id}`)}
+                    onClick={() => {
+                      handleGetCard(id)
+                        .then(() => {
+                          navigate(`${ROUTES.EDIT_CARD}/${id}`);
+                        })
+                        .catch((err) => console.log(err));
+                    }}
                   >
                     <EditIcon />
                   </IconButton>

@@ -3,6 +3,7 @@ import { object } from "prop-types";
 import { useState } from "react";
 
 const useForm = (initialForm, schema, handleSubmit) => {
+  debugger;
   const [data, setData] = useState(initialForm);
   const [errors, setErrors] = useState({});
   const handleReset = () => {
