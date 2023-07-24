@@ -37,7 +37,6 @@ export default function useCards() {
 
   useEffect(() => {
     if (cards) {
-      console.log("hello");
       setFilter(
         cards.filter(
           (card) =>
@@ -59,6 +58,7 @@ export default function useCards() {
       const card = await getCard(id);
       setLoading(false);
       setCard(card);
+      return card;
     } catch (err) {
       setLoading(false);
       setError(err.message);
@@ -92,7 +92,7 @@ export default function useCards() {
     try {
       setLoading(true);
       const cards = await getMyCards();
-      requestStatus(false, null, null, cards);
+      requestStatus(false, null, cards, null);
       return card;
     } catch (error) {
       requestStatus(false, error, null);
@@ -103,7 +103,6 @@ export default function useCards() {
     async (cardId) => {
       try {
         const card = await changeLikeStatus(cardId);
-        console.log(card);
         snack("success", "The business card has been Liked");
       } catch (error) {
         requestStatus(false, error, null);
@@ -130,7 +129,6 @@ export default function useCards() {
       try {
         setLoading(true);
         const card = await editCard(cardId, normalaizedCard);
-        console.log(card);
         requestStatus(false, null, null, card);
         snack("success", "The business card has been successfully updated");
         Navigate(ROUTES.MY_CARDS);
@@ -143,17 +141,19 @@ export default function useCards() {
 
   const handleCreateCard = useCallback(async (card) => {
     try {
-      const card = await createCard(card);
       setLoading(true);
-      setCard(card);
+      console.log("hello created");
+      const cardData = await createCard(card);
+      setLoading(false);
+      setCard(cardData);
       snack("success", "A new business card has been created");
     } catch (err) {
       setLoading(false);
       setError(err.message);
+      console.log(err.message);
       snack("error", "has a problem to created a new card");
     }
   }, []);
-  debugger;
   const value = useMemo(() => {
     return { cards, card, isLoading, error, filteredCards };
   }, [cards, card, isLoading, error, filteredCards]);

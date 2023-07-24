@@ -5,12 +5,9 @@ import React from "react";
 
 export default function PageHeader({ title, subtitle }) {
   const { isDark } = useTheme();
+
   return (
-    <Box
-    // sx={{
-    //   color: isDark ? "#e3f2fd" : "#333333",
-    // }}
-    >
+    <Box sx={isDark ? { color: "#e3f2fd" } : { color: "#333333" }}>
       <Typography variant="h2" component="h1">
         {title}
       </Typography>

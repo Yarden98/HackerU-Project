@@ -19,11 +19,6 @@ export default function BussinessCard({
 }) {
   const navigate = useNavigate();
 
-  if (card.user_id) {
-    console.log("It's ok and it work :)");
-  } else {
-    console.log("null");
-  }
   return (
     <Card sx={{ maxWidth: 300, m: 2 }}>
       <CardActionArea

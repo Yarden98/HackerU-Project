@@ -14,33 +14,28 @@ import ROUTES from "../../routers/routeModel";
 export default function EditCardPage() {
   const { id } = useParams();
   const { handleUpdateCard, handleGetCard, value } = useCards();
-  console.log(value.card);
   const { user } = useUser();
   const { data, errors, ...rest } = useForm(initialCardForm, cardSchema, () => {
     handleUpdateCard(value.card._id, {
       ...normalizeUser({ ...data }),
       bizNumber: value.card.bizNumber,
-      user_id: value.card._id,
+      user_id: value.card.user_id,
     });
   });
-
-  if (value.card.user_id) {
-    console.log("Its work and you will be Okey :) ");
-  } else {
-    console.log("null and you are fucking stupid :( ");
-  }
-
+  console.log(id);
   useEffect(() => {
-    handleGetCard(id).then((data) => {
-      if (user._id !== data.user_id) Navigate(ROUTES.CARDS);
-      const modeledCard = mapCardToModel(data);
-      rest.setData(modeledCard);
-      // if (card) rest.setData(mapCardToModel(card));
-    });
-  }, []);
+    if (user) {
+      const getCard = async () => {
+        const cardData = await handleGetCard(id);
+        const modeledCard = mapCardToModel(cardData);
+        rest.setData(modeledCard);
+      };
+
+      getCard();
+    }
+  }, [handleGetCard, user]);
 
   // if (!user) return <Navigate replace to={ROUTES.CARDS} />;
-
   return (
     <Container
       sx={{

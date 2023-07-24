@@ -1,8 +1,12 @@
 import React, { useCallback, useEffect } from "react";
 import useCards from "../hooks/useCards";
-import { Container } from "@mui/material";
+import { Container, IconButton } from "@mui/material";
 import PageHeader from "../../components/PageHeader";
 import CardsFeedback from "../components/CardsFeedback";
+import { useNavigate } from "react-router-dom";
+import { useUser } from "../../users/providers/UserProvider";
+import ROUTES from "../../routers/routeModel";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
 
 export default function FavCards({ id, cardId }) {
   const { value, ...rest } = useCards();
@@ -12,6 +16,9 @@ export default function FavCards({ id, cardId }) {
   useEffect(() => {
     handleGetFavCards();
   }, []);
+
+  const { user } = useUser();
+  const navigate = useNavigate();
 
   const onDeleteCard = useCallback(
     async (cardId) => {
@@ -43,6 +50,22 @@ export default function FavCards({ id, cardId }) {
         onDelete={onDeleteCard}
         onLike={changeLikeStatus}
       />
+      {(user?.isAdmin || user?.user_id) && (
+        <IconButton
+          sx={{
+            position: "fixed",
+            bottom: "80px",
+            right: "20px",
+            display: "none",
+            "@media (min-width: 900px)": {
+              display: "block",
+            },
+          }}
+          onClick={() => navigate(`${ROUTES.CREATE_CARD}`)}
+        >
+          <AddCircleIcon sx={{ fontSize: 50 }} color="primary" />
+        </IconButton>
+      )}
     </Container>
   );
 }

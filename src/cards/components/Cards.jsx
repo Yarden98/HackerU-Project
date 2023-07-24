@@ -3,16 +3,21 @@ import { arrayOf } from "prop-types";
 import React from "react";
 import cardType from "../models/cardType";
 import BussinessCard from "../components/card/BussinessCard";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import useCards from "../hooks/useCards";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
+import { useUser } from "../../users/providers/UserProvider";
+import ROUTES from "../../routers/routeModel";
 
 export default function Cards({
   cards,
   handleDelete,
   handleLike,
   changeLikeStatus,
+  user_id,
 }) {
+  const { user } = useUser();
+  const navigate = useNavigate();
   return (
     <>
       <Grid container>
@@ -28,11 +33,23 @@ export default function Cards({
           </Grid>
         ))}
       </Grid>
-      <IconButton
-        sx={{ marginLeft: "90%", xxs: "none", xs: "none", md: "block" }}
-      >
-        <AddCircleIcon sx={{ fontSize: 50 }} color="primary" />
-      </IconButton>
+
+      {(user?.isAdmin || user?.user_id) && (
+        <IconButton
+          sx={{
+            position: "fixed",
+            bottom: "80px",
+            right: "20px",
+            display: "none",
+            "@media (min-width: 900px)": {
+              display: "block",
+            },
+          }}
+          onClick={() => navigate(`${ROUTES.CREATE_CARD}`)}
+        >
+          <AddCircleIcon sx={{ fontSize: 50 }} color="primary" />
+        </IconButton>
+      )}
     </>
   );
 }

@@ -25,7 +25,8 @@ import MyFormTwo from "../forms/MyFormTwo";
 import TestForm from "../forms/TestForm";
 import MyFormWithCustomComponents from "../forms/MyFormWithCustomComponents";
 import EditCardPage from "../cards/pages/EditCardPage";
-
+import CreateNewCard from "../cards/components/card/CreateNewCard";
+import EditUser from "../users/pages/EditUser";
 export default function Router() {
   return (
     <>
@@ -37,7 +38,9 @@ export default function Router() {
         <Route path={ROUTES.MY_CARDS} element={<MyCards />} />
         <Route path={ROUTES.SIGNUP} element={<SingUp />} />
         <Route path={ROUTES.LOGIN} element={<LogIn />} />
+        <Route path={ROUTES.EDIT_USER} element={<EditUser />} />
         <Route path={`${ROUTES.EDIT_CARD}/:id`} element={<EditCardPage />} />
+        <Route path={`${ROUTES.CREATE_CARD}`} element={<CreateNewCard />} />
         <Route path={ROUTES.USER_PROFILE} element={<Profile />} />
         <Route
           path={`${ROUTES.CARD_INFO}/:id

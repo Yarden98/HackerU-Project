@@ -4,6 +4,7 @@ import PageHeader from "../../../components/PageHeader";
 import useCards from "../../hooks/useCards";
 import CardsFeedback from "../CardsFeedback";
 import { useSearchParams } from "react-router-dom";
+import { useTheme } from "@emotion/react";
 export default function CardsPage() {
   const { handleGetCards, handleDeleteCard, handleLikeCard, value, cards } =
     useCards();
@@ -20,7 +21,6 @@ export default function CardsPage() {
   const handleLike = async (id) => {
     await handleLikeCard(id);
   };
-  console.log(filteredCards);
   return (
     <div>
       <Container>
