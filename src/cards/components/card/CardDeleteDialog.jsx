@@ -24,7 +24,7 @@ export default function CardDeleteDialog({
       maxWidth="xs"
     >
       <DialogTitle id="alert-dialog-title">
-        {"Are you sure you want to delete thiis cards?"}
+        {"Are you sure you want to delete this is cards?"}
       </DialogTitle>
       <DialogContent>
         <DialogContentText id="alert-dialog-description">

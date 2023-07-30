@@ -1,7 +1,7 @@
-import { useTheme } from "@emotion/react";
 import { Box, Divider, Typography } from "@mui/material";
 import { string } from "prop-types";
 import React from "react";
+import { useTheme } from "../provider/ThemeProvider";
 
 export default function PageHeader({ title, subtitle }) {
   const { isDark } = useTheme();

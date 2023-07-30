@@ -1,17 +1,33 @@
-import { Avatar, IconButton, Tooltip } from "@mui/material";
+import { Avatar, IconButton, Tooltip, Typography } from "@mui/material";
 import React from "react";
 import { useMenu } from "../menu/provider/MenuProvider";
+import { shape, string } from "prop-types";
+import { useUser } from "../../../../users/providers/UserProvider";
+import useUsers from "../../../../users/hooks/useUsers";
 
-export default function Logged({ handleClick }) {
+export default function Logged({ handleClick, title }) {
   const setOpen = useMenu();
   return (
-    <Tooltip title="Open settings">
-      <IconButton
-        sx={{ xs: "none", p: 0, display: "inline-flex", marginLeft: 2 }}
-        onClick={() => setOpen(true)}
+    <>
+      <Typography
+        variant="body1"
+        sx={{ marginRight: 2, m: 2, fontFamily: "serif", fontSize: "medium" }}
       >
-        <Avatar alt="Bird" src="/assets/images/loginAvatr.jpeg" />
-      </IconButton>
-    </Tooltip>
+        {title}
+      </Typography>
+      <Tooltip title="Open settings">
+        <IconButton
+          sx={{ xs: "none", p: 0, display: "inline-flex", marginLeft: 2 }}
+          onClick={() => setOpen(true)}
+        >
+          <Avatar alt="Bird" src="/assets/images/loginAvatr.jpeg" />
+        </IconButton>
+      </Tooltip>
+    </>
   );
 }
+Logged.propTypes = {
+  user: shape({
+    title: string.isRequired,
+  }),
+};

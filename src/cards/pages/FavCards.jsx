@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { useUser } from "../../users/providers/UserProvider";
 import ROUTES from "../../routers/routeModel";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
+import { useTheme } from "../../provider/ThemeProvider";
 
 export default function FavCards({ id, cardId }) {
   const { value, ...rest } = useCards();
@@ -17,6 +18,7 @@ export default function FavCards({ id, cardId }) {
     handleGetFavCards();
   }, []);
 
+  const { isDark } = useTheme();
   const { user } = useUser();
   const navigate = useNavigate();
 
@@ -38,7 +40,7 @@ export default function FavCards({ id, cardId }) {
   }, []);
 
   return (
-    <Container>
+    <Container sx={isDark ? { color: "#e3f2fd" } : { color: "#333333" }}>
       <PageHeader
         title="Favorite Cards Page"
         subtitle="Here you can find all your favorite business cards"

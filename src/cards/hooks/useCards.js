@@ -142,7 +142,6 @@ export default function useCards() {
   const handleCreateCard = useCallback(async (card) => {
     try {
       setLoading(true);
-      console.log("hello created");
       const cardData = await createCard(card);
       setLoading(false);
       setCard(cardData);
@@ -150,7 +149,6 @@ export default function useCards() {
     } catch (err) {
       setLoading(false);
       setError(err.message);
-      console.log(err.message);
       snack("error", "has a problem to created a new card");
     }
   }, []);

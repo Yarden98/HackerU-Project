@@ -1,11 +1,13 @@
 import { Grid } from "@mui/material";
 import { Container } from "@mui/system";
 import PageHeader from "../../components/PageHeader";
+import { useTheme } from "../../provider/ThemeProvider";
 
 export default function About() {
+  const { isDark } = useTheme();
   return (
     <>
-      <Container>
+      <Container sx={isDark ? { color: "#e3f2fd" } : { color: "#333333" }}>
         <PageHeader
           title="About Page"
           subtitle="On this page you can find explanations about using the application"
@@ -13,8 +15,6 @@ export default function About() {
         <Grid container spacing={2}>
           <Grid item xs={12} md={8} alignSelf="center">
             <div>
-              <h1>Welcome to our website!</h1>
-
               <h2>About Business Cards:</h2>
               <p>
                 Business cards are an essential marketing tool for professionals

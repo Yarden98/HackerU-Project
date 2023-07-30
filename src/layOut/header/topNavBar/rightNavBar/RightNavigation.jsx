@@ -8,7 +8,8 @@ import { useUser } from "../../../../users/providers/UserProvider";
 import Notlogged from "./Notlogged";
 import MoreButton from "./MoreButton";
 import Search from "./search/Search";
-export default function RightNavigation() {
+import { makeFirstLetterCapital } from "../../../../forms/utils/algoMethods";
+export default function RightNavigation({ user_id }) {
   const { isDark, toggleDark } = useTheme();
   const { user } = useUser();
   return (
@@ -19,7 +20,13 @@ export default function RightNavigation() {
           {isDark ? <LightModeIcon /> : <DarkModeIcon />}
         </IconButton>
 
-        {user ? <Logged /> : <Notlogged />}
+        {user ? (
+          <Logged
+            title={`Welcome\n${makeFirstLetterCapital(user.firstName)}`}
+          />
+        ) : (
+          <Notlogged />
+        )}
       </Box>
 
       <MoreButton />

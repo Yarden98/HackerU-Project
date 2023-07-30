@@ -22,7 +22,7 @@ export default function EditCardPage() {
       user_id: value.card.user_id,
     });
   });
-  console.log(id);
+
   useEffect(() => {
     if (user) {
       const getCard = async () => {

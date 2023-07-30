@@ -7,11 +7,13 @@ import { useNavigate } from "react-router-dom";
 import { useUser } from "../../users/providers/UserProvider";
 import ROUTES from "../../routers/routeModel";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
+import { useTheme } from "../../provider/ThemeProvider";
 
 export default function MyCards() {
   const { cards, isLoading, error, handleGetMyCard, handleDeleteCard } =
     useCards();
   const navigate = useNavigate();
+  const { isDark } = useTheme();
   const { user } = useUser();
   useEffect(() => {
     handleGetMyCard();
@@ -22,7 +24,7 @@ export default function MyCards() {
   };
   return (
     <div>
-      <Container>
+      <Container sx={isDark ? { color: "#e3f2fd" } : { color: "#333333" }}>
         <PageHeader
           title="cards"
           subtitle="On this page you can find your bussines cards from all caregories"

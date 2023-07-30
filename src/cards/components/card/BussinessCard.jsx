@@ -6,9 +6,9 @@ import CardActionBar from "../card/CardActionBar";
 import cardType from "../../models/cardType";
 import { func } from "prop-types";
 import { CardActionArea } from "@mui/material";
-import { useNavigate } from "react-router-dom";
 import ROUTES from "../../../routers/routeModel";
 import useCards from "../../hooks/useCards";
+import { useNavigate } from "react-router-dom";
 
 export default function BussinessCard({
   card,

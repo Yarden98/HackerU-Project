@@ -19,7 +19,6 @@ import useCards from "../../../../../cards/hooks/useCards";
 import searchStyle from "./searchStyle";
 
 export default function Search({}) {
-  // const { isDark } = useTheme();
   const [searchParams, setSearch] = useSearchParams();
   const [query, setQuery] = useState("");
   const handleChange = ({ target }) => setQuery(target.value);
