@@ -31,8 +31,6 @@ export default function CardActionBar({
 
   const { handleGetCard } = useCards();
 
-  console.log(user_id);
-
   const handleDeleteCard = () => {
     handleDelete(id);
     setDialog(false);

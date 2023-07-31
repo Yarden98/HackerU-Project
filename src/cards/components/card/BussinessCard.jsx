@@ -7,18 +7,15 @@ import cardType from "../../models/cardType";
 import { func } from "prop-types";
 import { CardActionArea } from "@mui/material";
 import ROUTES from "../../../routers/routeModel";
-import useCards from "../../hooks/useCards";
 import { useNavigate } from "react-router-dom";
 
 export default function BussinessCard({
   card,
   handleDelete,
-  handleEdit,
   handleLike,
   changeLikeStatus,
 }) {
   const navigate = useNavigate();
-
   return (
     <Card sx={{ maxWidth: 300, m: 2 }}>
       <CardActionArea

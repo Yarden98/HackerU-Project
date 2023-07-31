@@ -26,7 +26,6 @@ export default function LogIn() {
   return (
     <Container
       sx={{
-        mt: 8,
         display: "flex",
         justifyContent: "center",
         alignItems: "center",

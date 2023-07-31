@@ -13,7 +13,7 @@ export default function FavCards({ id, cardId }) {
   const { value, ...rest } = useCards();
   const { handleDeleteCard, handleGetFavCards, handleLikeCard } = rest;
   const { isLoading, error, cards } = value;
-  console.log(value);
+
   useEffect(() => {
     handleGetFavCards();
   }, []);
