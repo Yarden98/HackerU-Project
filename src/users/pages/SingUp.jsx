@@ -8,10 +8,12 @@ import { Container } from "@mui/material";
 import { useUser } from "../providers/UserProvider";
 import { Navigate } from "react-router-dom";
 import ROUTES from "../../routers/routeModel";
+import { useTheme } from "../../provider/ThemeProvider";
 
 export default function SingUp() {
   const { handleSignup } = useUsers();
   const { user } = useUser();
+  const {isDark} =useTheme();
   const { data, errors, ...rest } = useForm(
     initiaSignupForm,
     signupSchema,
@@ -26,13 +28,14 @@ export default function SingUp() {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+        color: isDark?  "#e3f2fd"  :   "#333333",
       }}
     >
       <UserForm
         onSubmit={rest.onSubmit}
         onReset={rest.onReset}
         validateForm={rest.validateForm}
-        titil={"registration form"}
+        title={"registration form"}
         errors={errors}
         data={data}
         onInputChange={rest.handleChange}

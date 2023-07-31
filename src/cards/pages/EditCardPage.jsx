@@ -3,16 +3,18 @@ import CardForm from "../components/card/CardForm";
 import useCards from "../hooks/useCards";
 import { useUser } from "../../users/providers/UserProvider";
 import useForm from "../../forms/hooks/useForm";
-import { Navigate, useParams } from "react-router-dom";
+import {  useParams } from "react-router-dom";
 import normalizeUser from "../../users/helpers/normalization/normalizeUser";
 import mapCardToModel from "../helpers/normalization/mapToModel";
 import { Container } from "@mui/material";
 import initialCardForm from "../helpers/initialForms/initialCardForm";
 import cardSchema from "../models/joi-schema/cardSchema";
 import ROUTES from "../../routers/routeModel";
+import { useTheme } from "../../provider/ThemeProvider";
 
 export default function EditCardPage() {
   const { id } = useParams();
+  const {isDark} =useTheme();
   const { handleUpdateCard, handleGetCard, value } = useCards();
   const { user } = useUser();
   const { data, errors, ...rest } = useForm(initialCardForm, cardSchema, () => {
@@ -39,6 +41,7 @@ export default function EditCardPage() {
   return (
     <Container
       sx={{
+        color: isDark?  "#e3f2fd"  :   "#333333",
         paddingTop: 8,
         display: "flex",
         justifyContent: "center",

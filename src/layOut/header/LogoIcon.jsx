@@ -7,7 +7,7 @@ export default function LogoIcon() {
   return (
     <>
       <NavBarLink to={ROUTES.ROOT}>
-        <IconButton>
+        <IconButton sx={{alignItems:"center", marginBottom:"15px"}}> 
           <Avatar alt="logo" src="/assets/images/cardlogo.png" />
         </IconButton>
       </NavBarLink>

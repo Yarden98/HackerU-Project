@@ -24,7 +24,7 @@ const Menu = ({ isOpen, anchorEL, onClose }) => {
       keepMounted
       transformOrigin={{ vertical: "top", horizontal: "right" }}
     >
-      <Box>
+      <Box >
         <MenuLinks
           text="about"
           navigateTo={ROUTES.ABOUT}

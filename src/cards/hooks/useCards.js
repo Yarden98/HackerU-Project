@@ -13,11 +13,9 @@ import { useSnack } from "../../provider/SnackbarProvider";
 import { useUser } from "../../users/providers/UserProvider";
 import {
   Navigate,
-  createSearchParams,
   useSearchParams,
 } from "react-router-dom";
 import ROUTES from "../../routers/routeModel";
-import Search from "../../layOut/header/topNavBar/rightNavBar/search/Search";
 
 export default function useCards() {
   const [query, setQuery] = useState("");
@@ -35,16 +33,21 @@ export default function useCards() {
     setQuery(searchParams.get("q") ?? "");
   }, [searchParams]);
 
+
   useEffect(() => {
     if (cards) {
+      const queryLower = query.toLowerCase(); 
       setFilter(
         cards.filter(
           (card) =>
-            card.title.includes(query) || String(card.bizNumber).includes(query)
+            card.title.toLowerCase().includes(queryLower) || 
+            String(card.bizNumber).toLowerCase().includes(queryLower)
         )
       );
     }
   }, [cards, query]);
+
+ 
 
   const requestStatus = (loading, errorMessage, cards, card = null) => {
     setLoading(loading);

@@ -2,23 +2,14 @@ import React, { useEffect, useState } from "react";
 import {
   Box,
   FormControl,
-  IconButton,
-  InputBase,
-  OutlinedInput,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-import { shape } from "prop-types";
-import { styled, alpha } from "@mui/material/styles";
-import { useTheme } from "@emotion/react";
 import {
-  Navigate,
-  createSearchParams,
   useSearchParams,
 } from "react-router-dom";
-import useCards from "../../../../../cards/hooks/useCards";
 import searchStyle from "./searchStyle";
 
-export default function Search({}) {
+export default function Search() {
   const [searchParams, setSearch] = useSearchParams();
   const [query, setQuery] = useState("");
   const handleChange = ({ target }) => setQuery(target.value);
@@ -28,7 +19,7 @@ export default function Search({}) {
   }, [query]);
 
   return (
-    <Box display="inline-flex">
+    <Box display="inline-flex" sx={{alignItems:"center"}}>
       <FormControl>
         <SearchDiv>
           <SearchIconWrapper>

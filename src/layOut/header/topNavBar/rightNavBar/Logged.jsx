@@ -2,8 +2,6 @@ import { Avatar, IconButton, Tooltip, Typography } from "@mui/material";
 import React from "react";
 import { useMenu } from "../menu/provider/MenuProvider";
 import { shape, string } from "prop-types";
-import { useUser } from "../../../../users/providers/UserProvider";
-import useUsers from "../../../../users/hooks/useUsers";
 
 export default function Logged({ handleClick, title }) {
   const setOpen = useMenu();

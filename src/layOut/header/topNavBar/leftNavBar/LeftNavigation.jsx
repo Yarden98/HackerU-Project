@@ -11,9 +11,9 @@ export default function LeftNavigation() {
 
   return (
     <>
-      <Box>
+      <Box >
         <LogoIcon />
-        <Box sx={{ display: { xs: "none", md: "inline-flex" } }}>
+        <Box sx={{ display: { xs: "none", md: "inline-flex", alignItems:"center", marginTop:"15px" } }}>
           <TextLogo />
           <NavItem to={ROUTES.CARDS} label="Cards" sx={{ color: "white" }} />
           <NavItem to={ROUTES.ABOUT} label="About" sx={{ color: "white" }} />
