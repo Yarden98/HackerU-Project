@@ -6,7 +6,6 @@ export default function CardDetailsPage() {
   return (
     <>
       <div>welcome to card details page for card {id}</div>
-      <div>Hello</div>
     </>
   );
 }

@@ -6,7 +6,7 @@ import { Box, MenuItem } from "@mui/material";
 import MenuLinks from "../../../../routers/components/MenuLinks";
 import ROUTES from "../../../../routers/routeModel";
 
-const Menu = ({ isOpen, anchorEL, onClose }) => {
+const Menu = ({ isOpen, anchorEl, onClose }) => {
   const { user } = useUser();
   const { handleLogout } = useUsers();
 
@@ -14,12 +14,11 @@ const Menu = ({ isOpen, anchorEL, onClose }) => {
     handleLogout();
     onClose();
   };
-
   return (
     <MuiMenu
       open={isOpen}
       onClose={onClose}
-      anchorEl={anchorEL}
+      anchorEl={anchorEl}
       anchorOrigin={{ vertical: "top", horizontal: "right" }}
       keepMounted
       transformOrigin={{ vertical: "top", horizontal: "right" }}
@@ -51,17 +50,7 @@ const Menu = ({ isOpen, anchorEL, onClose }) => {
 
         {user && (
           <>
-            <MenuLinks
-              text="profile"
-              navigateTo={ROUTES.USER_PROFILE}
-              onClick={onClose}
-            />
-
-            <MenuLinks
-              text="edit account"
-              navigateTo={ROUTES.EDIT_USER}
-              onClick={onClose}
-            />
+        
             <MenuItem onClick={onLogout}>Logout</MenuItem>
           </>
         )}

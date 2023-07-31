@@ -5,9 +5,6 @@ import CardBody from "../card/CardBody";
 import CardActionBar from "../card/CardActionBar";
 import cardType from "../../models/cardType";
 import { func } from "prop-types";
-import { CardActionArea } from "@mui/material";
-import ROUTES from "../../../routers/routeModel";
-import { useNavigate } from "react-router-dom";
 
 export default function BussinessCard({
   card,
@@ -15,12 +12,9 @@ export default function BussinessCard({
   handleLike,
   changeLikeStatus,
 }) {
-  const navigate = useNavigate();
   return (
     <Card sx={{ maxWidth: 300, m: 2 }}>
-      <CardActionArea
-        onClick={() => navigate(`${ROUTES.CARD_INFO}/${card._id}`)}
-      >
+     
         <CardHeader image={card.image} />
         <CardBody
           title={card.title}
@@ -29,7 +23,6 @@ export default function BussinessCard({
           phone={card.phone}
           bizNumber={card.bizNumber}
         />
-      </CardActionArea>
       <CardActionBar
         id={card._id}
         user_id={card.user_id}

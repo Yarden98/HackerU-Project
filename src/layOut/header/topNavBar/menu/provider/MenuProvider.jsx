@@ -12,17 +12,16 @@ export default function MenuProvider({ children }) {
   const screenSize = useMediaQuery(theme.breakpoints.up("md"));
 
   const [isOpen, setOpen] = useState(false);
-  const [anchorEL, setAnchor] = useState(null);
+  const [anchorEl, setAnchor] = useState(null);
   const anchorRef = useRef();
 
   useEffect(() => {
     setAnchor(anchorRef.current);
-  }, []);
+  }, [anchorRef]);
 
   useEffect(() => {
     setOpen(false);
   }, [screenSize]);
-
   return (
     <>
       <MenuContext.Provider value={setOpen}>{children}</MenuContext.Provider>
@@ -33,9 +32,9 @@ export default function MenuProvider({ children }) {
         top="70px"
         right="20px"
       ></Box>
-      {anchorEL && (
+      {anchorEl && (
         <Menu
-          anchorEl={anchorEL}
+          anchorEl={anchorEl}
           isOpen={isOpen}
           onClose={() => setOpen(false)}
         />

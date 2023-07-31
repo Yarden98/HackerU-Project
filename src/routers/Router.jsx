@@ -41,8 +41,7 @@ export default function Router() {
         <Route path={`${ROUTES.CREATE_CARD}`} element={<CreateNewCard />} />
         <Route path={ROUTES.USER_PROFILE} element={<Profile />} />
         <Route
-          path={`${ROUTES.CARD_INFO}/:id
-        `}
+          path={`${ROUTES.CARD_INFO}/:id`}
           element={<CardDetailsPage />}
         />
         <Route path={ROUTES.SANDBOX} element={<SandBox />}>
