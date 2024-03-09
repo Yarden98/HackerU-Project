@@ -13,7 +13,7 @@ import { useTheme } from "../../provider/ThemeProvider";
 export default function SingUp() {
   const { handleSignup } = useUsers();
   const { user } = useUser();
-  const {isDark} =useTheme();
+  const { isDark } = useTheme();
   const { data, errors, ...rest } = useForm(
     initiaSignupForm,
     signupSchema,
@@ -28,12 +28,12 @@ export default function SingUp() {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        color: isDark?  "#e3f2fd"  :   "#333333",
+        color: isDark ? "#e3f2fd" : "#333333",
       }}
     >
       <UserForm
         onSubmit={rest.onSubmit}
-        onReset={rest.onReset}
+        onReset={rest.handleReset}
         validateForm={rest.validateForm}
         title={"registration form"}
         errors={errors}

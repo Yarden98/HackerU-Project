@@ -5,6 +5,7 @@ import CardBody from "../card/CardBody";
 import CardActionBar from "../card/CardActionBar";
 import cardType from "../../models/cardType";
 import { func } from "prop-types";
+import { IconButton } from "@mui/material";
 
 export default function BussinessCard({
   card,
@@ -14,8 +15,7 @@ export default function BussinessCard({
 }) {
   return (
     <Card sx={{ maxWidth: 300, m: 2 }}>
-     
-        <CardHeader image={card.image} />
+      <CardHeader image={card.image} />
         <CardBody
           title={card.title}
           subtitle={card.subtitle}

@@ -34,6 +34,7 @@ const useForm = (initialForm, schema, handleSubmit) => {
     const schemaForValidate = Joi.object(schema);
     const { error } = schemaForValidate.validate(data);
     if (error) return error;
+
     return null;
   };
   return {

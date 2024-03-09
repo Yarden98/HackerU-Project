@@ -48,21 +48,21 @@ const useUsers = () => {
     setUser(null);
   }, [setUser]);
 
-  const handleSignup = useCallback(
-    async (userFromTheClient) => {
-      try {
-        const normalizeUser = normalizeUser(userFromTheClient);
-        await signup(normalizeUser);
-        await handleLogin({
-          email: userFromTheClient.email,
-          password: userFromTheClient.password,
-        });
-      } catch (error) {
-        requestStatus(false, error, null);
-      }
-    },
-    [normalizeUser, handleLogin, requestStatus]
-  );
+  const handleSignup = async (userFromTheClient) => {
+    try {
+      console.log("in");
+      const normalizedUser = normalizeUser(userFromTheClient);
+      console.log(normalizedUser);
+      await signup(normalizedUser);
+      await handleLogin({
+        email: userFromTheClient.email,
+        password: userFromTheClient.password,
+      });
+    } catch (error) {
+      console.log("error", error);
+      requestStatus(false, error, null);
+    }
+  };
 
   const value = useMemo(
     () => ({ isLoading, error, user }),

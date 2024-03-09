@@ -1,6 +1,6 @@
 const initiaSignupForm = {
   first: "",
-  midel: "",
+  middle: "",
   last: "",
   phone: "",
   email: "",
